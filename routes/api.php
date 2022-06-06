@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\inputController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\inputController;
+use App\Http\Controllers\InputPenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,13 @@ Route::controller(inputController::class)->group(function(){
     route::post('tambah', 'store');
     route::post('update/{id}', 'update');
     route::get('hapus/{id}','destroy');
+});
+
+
+Route::prefix('/input-penjualan')->controller(InputPenjualanController::class)->group(function() {
+    Route::get('/', 'index');
+    Route::get('/{input_penjualan}', 'show');
+    Route::post('/', 'store');
+    Route::patch('/{input_penjualan}', 'update');
+    Route::delete('/{input_penjualan}','destroy');
 });
